@@ -2,15 +2,24 @@ project:
   type: website
 
 website:
-  title: "blog-template"
+  title: "Rayyan Aamir"
   navbar:
+    logo: "images/logo_1.png"
+    left:
+      - href: home.qmd
+        text: Home
+      - href: index.qmd
+        text: Blog
+      - href: about.qmd
+        text: About
     right:
-      - about.qmd
       - icon: github
-        href: https://github.com/etc5523-2022
+        href: https://github.com/orchuk12
+      - icon: linkedin
+        href: https://www.linkedin.com/in/rayyan-shekhani/
 format:
   html:
-    theme: cosmo
+    theme: solarized
     css: styles.css
 
 
