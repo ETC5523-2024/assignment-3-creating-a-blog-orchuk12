@@ -1,13 +1,16 @@
 ---
-title: "About"
+title: "Rayyan Aamir Shekhani"
 image: images/ray-am.jpg
 about:
-  template: jolla
+  template: solana
+  image-shape: rounded
   links:
     - icon: github
       text: Github
       href: https://github.com/etc5523-2022
-
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/rayyan-shekhani/
 ---
 
 This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
