@@ -7,9 +7,9 @@ website:
   navbar:
     logo: "images/logo_1.png"
     left:
-      - href: home.qmd
-        text: Home
       - href: index.qmd
+        text: Home
+      - href: blog.qmd
         text: Blog
       - href: about.qmd
         text: About
