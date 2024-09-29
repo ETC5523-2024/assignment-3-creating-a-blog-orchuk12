@@ -2,7 +2,7 @@
 
 body {
   color: #343A40 !important;
-  font-family: "Tahoma;" Times, serif;
+  font-family: "Tahoma", Times, serif !important;
   background-color: #ede9d8;
 }
 
