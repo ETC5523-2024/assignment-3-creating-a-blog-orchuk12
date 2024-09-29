@@ -1,7 +1,24 @@
 ---
-title: "Home"
+title: ""
+engine: knitr
+format: 
+  html
 ---
 
-This page will act as the home page, introducing the problem
+```{css}
+#| echo: false
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+```
+
+<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
+
+<div class = "bg-txt">The Seattle Herald</div>
+
+<div class = "bg-img">
+  <img id = "home" src="images/seattle.jpeg">
+</div>
 
