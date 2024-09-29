@@ -1,13 +1,13 @@
 ---
-title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
-categories: [news]
+title: "The Rise of Electric Vehicles in Washington State, USA"
+author: "Rayyan Aamir"
+date: "2024-10-04"
+categories: [News]
 css: blog.css
 ---
 
 This is the first post in a Quarto blog. Welcome!
 
-![](thumbnail.jpg)
+![](../../images/ev.jpg)
 
 

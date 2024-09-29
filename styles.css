@@ -32,3 +32,6 @@ a.about-link {
   color: #343A40 !important;
 }
 
+.about-contents {
+  text-align: justify;
+}
