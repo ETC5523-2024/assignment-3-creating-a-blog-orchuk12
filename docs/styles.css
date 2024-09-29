@@ -36,8 +36,6 @@ a.about-link {
   text-align: justify;
 }
 
-
-
 .bg-img {
   position: relative;
   text-align: center;
@@ -60,3 +58,8 @@ a.about-link {
   font-size: 1.75em;
   font-weight: bold;
 }
+
+.listing-category {
+  color: #343A40 !important;
+}
+

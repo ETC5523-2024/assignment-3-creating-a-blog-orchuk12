@@ -1,0 +1,24 @@
+---
+title: "The Rise of Electric Vehicles in Washington State, USA"
+description: |
+  Electric vehicles are rapidly increasing in the state of Washington, where one in six new cars
+  sold is now electric. This growth is driven by state incentives such as rebates and a new Zero
+  Emission Vehicle (ZEV) law.
+author: "Rayyan Aamir"
+date: "2024-10-04"
+categories: [Electric Vehicles, Seattle]
+css: blog.css
+format:
+  html:
+    toc: true
+    toc_float: true
+    fig-align: center
+    number-sections: false
+---
+
+i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. 
+
+
+![](../../images/ev.jpg)
+
+
