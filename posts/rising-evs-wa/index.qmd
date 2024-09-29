@@ -3,9 +3,10 @@ title: "The Rise of Electric Vehicles in Washington State, USA"
 description: |
   Electric vehicles are rapidly increasing in the state of Washington, where one in six new cars
   sold is now electric. This growth is driven by state incentives such as rebates and a new Zero
-  Emission Vehicle (ZEV) law.
+  Emission Vehicle (ZEV) legislature.
 author: "Rayyan Aamir"
 date: "2024-10-04"
+image: "../../images/ev.jpg"
 categories: [Electric Vehicles, Seattle]
 css: blog.css
 format:
@@ -16,9 +17,90 @@ format:
     number-sections: false
 ---
 
-i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. i want to see what is the maximum width for text based inputs on this page. 
+```{r setup}
+#| include: false
+
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE)
+```
+
+```{r loading-libraries}
+
+library(tidyverse)
+library(janitor)
+library(usmap)
+library(kableExtra)
+library(stringr)
+library(leaflet)
+library(sf)
+library(gt)
+
+```
+
+```{r dataset}
+
+vehicle <- read_csv("data/Electric_Vehicle_Population_Data.csv")
+
+```
+
+```{r data-cleaning}
+#| eval: false
+
+# Removing all missing observations
+clean_vehicle <- vehicle %>%
+  drop_na()
+  
+# Cleaning variable names for easier data handling
+clean_vehicle <- clean_vehicle %>%
+  clean_names() %>%
+  filter(model_year >= 2008) %>%
+  filter(state == "WA")
+
+# Deselecting vin-number
+clean_vehicle <- clean_vehicle %>%
+  select(!vin_1_10)
+
+# Cleaning location variables
+clean_vehicle <- clean_vehicle %>%
+  mutate(vehicle_location = str_remove_all(vehicle_location, "POINT \\(|\\)"))
+
+clean_vehicle <- clean_vehicle %>%
+  mutate(lon = as.numeric(str_extract(vehicle_location, "^[-\\d\\.]+")),
+         lat = as.numeric(str_extract(vehicle_location, "[-\\d\\.]+$")))
+  
+# Saving to local
+write_csv(clean_vehicle, "data/clean-vehicle.csv")
+
+```
+
+```{r loading-vehicle-clean}
+
+clean_vehicle <- read_csv("data/clean-vehicle.csv")
+
+```
 
 
-![](../../images/ev.jpg)
+### Problem Description
+
+<div class = "blog-text-just">
+Electric vehicles are on the rise and every one in six new vehicles sold in Washington State is now an electric vehicle. Electric vehicles (EVs) and plug-in hybrid vehicles (HEVs) have been selling almost twice as quickly in Washington State (WA) than in the rest of the country, according to the findings of Electric Power Research Institute (The Seattle Medium, 2023). These EVs and HEVs are the future of transportation on land, bringing forth not only immense sales but benefits to our planet and to consumers as well. As of 2024, there are over 180,000 EVs in Washington with the majority of them being focused around Seattle. Now there are two main types of EVs we should be concerning ourselves with:
+
+1. **Battery Electric Vehicles** - These vehicles are off the bat, a category of their own, and are fully electric and powered through a battery along with an electric motor. This allows it to produce instant power, no noise. Furthermore, there are very advanced technological features within the car as these vehicles are targeted at a demographic that is environmentally cautious, prefers self-driving vehicles, and wants instant power and speed.
+
+2. **Plug-in Hybrid Electric Vehicles** - The concepts and technologies of regular EVs can also be implemented into traditional fuel powered cars. These unique breeds of cars provide customers with various bonuses such as excellent fuel efficiency, an engine for speed and a hybrid battery for power, and various high technological features including self driving.
+
+One might wonder, why are EVs becoming so abundant in the state of Washington, and is this to follow within the entirety of the United States? When it comes to Seattle and WA, the state has recently passed a new legislature in March of 2020 by the name of Zero Emission Vehicles (ZEV). This legislature aims to gradually increase the number of ZEVs sold until all new vehicles meet this new standard by 2035. There is a massive race ahead of us where car manufacturers will aim to gain the absolute highest number of battery efficiency and life, whilst ensuring to maximize the number of kilometers/miles the vehicle will travel.
+</div>
+
+```{r image/ev.jpg}
+#| fig-align: center
+#| out-width: 80%
+
+knitr::include_graphics("../../images/ev.jpg")
+
+```
 
 
