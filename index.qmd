@@ -19,6 +19,8 @@ body, html {
 <div class = "bg-txt">The Seattle Herald</div>
 
 <div class = "bg-img">
-  <img id = "home" src="images/seattle.jpeg">
+  <a href = "blog.html">
+    <img id = "home" src="images/seattle.jpeg" alt = "Image of Seattle skyline">
+  </a>
 </div>
 
