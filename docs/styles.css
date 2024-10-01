@@ -67,3 +67,11 @@ a.about-link {
   text-align: justify;
 }
 
+.figure-desc {
+  text-align: center;
+  font-size: 12px;
+  color: #697582;
+  margin-top: 5px;
+}
+
+
