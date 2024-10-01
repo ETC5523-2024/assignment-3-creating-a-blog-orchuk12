@@ -48,19 +48,20 @@ vehicle <- read_csv("data/Electric_Vehicle_Population_Data.csv")
 ```{r data-cleaning}
 #| eval: false
 
-# Removing all missing observations
-clean_vehicle <- vehicle %>%
-  drop_na()
+# Removing all missing observations and cleaning variable names
+clean_vehicle_raw <- vehicle %>%
+  drop_na() %>%
+  clean_names()
   
-# Cleaning variable names for easier data handling
-clean_vehicle <- clean_vehicle %>%
-  clean_names() %>%
+# Filtering the necessary data
+clean_vehicle <- clean_vehicle_raw %>%
   filter(model_year >= 2008) %>%
   filter(state == "WA")
 
 # Deselecting vin-number
 clean_vehicle <- clean_vehicle %>%
-  select(!vin_1_10)
+  select(county, city, state, postal_code, model_year, make, model, electric_vehicle_type,
+         clean_alternative_fuel_vehicle_cafv_eligibility, electric_range, vehicle_location)
 
 # Cleaning location variables
 clean_vehicle <- clean_vehicle %>%
@@ -84,15 +85,21 @@ clean_vehicle <- read_csv("data/clean-vehicle.csv")
 
 ### Problem Description
 
+##### **What You Need To Know**
+
 <div class = "blog-text-just">
 
-Electric vehicles are on the rise and every one in six new vehicles sold in Washington State is now an electric vehicle. Electric vehicles (EVs) and plug-in hybrid vehicles (HEVs) have been selling almost twice as quickly in Washington State (WA) than in the rest of the country, according to the findings of Electric Power Research Institute (The Seattle Medium, 2023). These EVs and HEVs are the future of transportation on land, bringing forth not only immense sales but benefits to our planet and to consumers as well. As of 2024, there are over 180,000 EVs in Washington with the majority of them being focused around Seattle. Now there are two main types of EVs we should be concerning ourselves with:
+Electric vehicles (EVs) are gaining serious momentum, and in Washington State, one in every six new cars sold is now electric. In fact, EVs and plug-in hybrid electric vehicles (PHEVs) are flying off the lot at almost twice the rate compared to the rest of the U.S., according to a recent report by the Electric Power Research Institute (The Seattle Medium, 2023). These vehicles represent the future of transportation, offering not only convenience and cutting-edge technology but also substantial benefits for the environment and consumers alike.
 
-1. **Battery Electric Vehicles** - These vehicles are off the bat, a category of their own, and are fully electric and powered through a battery along with an electric motor. This allows it to produce instant power, no noise. Furthermore, there are very advanced technological features within the car as these vehicles are targeted at a demographic that is environmentally cautious, prefers self-driving vehicles, and wants instant power and speed.
+As of 2024, Washington is home to more than 180,000 electric vehicles, with the majority concentrated in the Seattle area. So, what’s driving this shift? Let’s break down the two main types of EVs leading the charge:
 
-2. **Plug-in Hybrid Electric Vehicles** - The concepts and technologies of regular EVs can also be implemented into traditional fuel powered cars. These unique breeds of cars provide customers with various bonuses such as excellent fuel efficiency, an engine for speed and a hybrid battery for power, and various high technological features including self driving.
+1. **Battery Electric Vehicles** - are in a class of their own. Fully electric and powered by a battery and electric motor(s), these vehicles deliver instant power without the noise. They’re designed for eco-conscious drivers who prioritize features like self-driving capabilities, rapid acceleration, and the futuristic tech. BEVs are more than just cars, they’re high-tech machines that represent a new style of driving.
 
-One might wonder, why are EVs becoming so abundant in the state of Washington, and is this to follow within the entirety of the United States? When it comes to Seattle and WA, the state has recently passed a new legislature in March of 2020 by the name of Zero Emission Vehicles (ZEV). This legislature aims to gradually increase the number of ZEVs sold until all new vehicles meet this new standard by 2035. There is a massive race ahead of us where car manufacturers will aim to gain the absolute highest number of battery efficiency and life, whilst ensuring to maximize the number of kilometers/miles the vehicle will travel.
+2. **Plug-in Hybrid Electric Vehicles** - these blend the best of both worlds, combining the tech and efficiency of EVs with the speed and power of a traditional fuel engine. PHEVs offer drivers excellent fuel efficiency while still providing the electric boost from a hybrid battery. Plus, they come equipped with many of the same advanced tech features as BEVs, like self-driving capabilities, making them a versatile choice for those looking for a little bit of everything.
+
+##### **Why Washington State Is Leading The EV Revolution**
+
+You might be wondering, why is Washington such a hotspot for EVs? The answer lies in the state’s forward thinking policies. In March 2020, Washington passed the Zero Emission Vehicle (ZEV) legislation, which aims to gradually increase the number of ZEVs on the road until all new vehicles meet ZEV standards by 2035. This ambitious move has set the stage for a race among car manufacturers to create vehicles with the longest battery life, best efficiency, and most miles per charge—leading the way in innovation and sustainability.
 
 </div>
 
@@ -108,16 +115,44 @@ knitr::include_graphics("../../images/ev.jpg")
 
 <div class = "blog-text-just">
 
-The data to conduct the analysis for this blogpost article has been extracted from [Kaggle](https://www.kaggle.com/datasets/jainaru/electric-vehicle-population/data) and this dataset was shared by a user named “Jaina”, it is titled, “Electric Vehicle Data”. It was shared in 2024 and tends to be updated quarterly. 
+The data to conduct the analysis for this blogpost article has been extracted from [Kaggle](https://www.kaggle.com/datasets/jainaru/electric-vehicle-population/data) and this dataset was shared by a user named “Jaina”, it is titled, “Electric Vehicle Data”. It was shared in 2024 and tends to be updated quarterly.
 
 </div>
 
 ```{r}
+#| label: tbl-var_desc
+#| tbl-cap: "Description of necessary variables from the dataset."
 
-# clean_vehicle_vars <- select()
+# Selecting the variables necessary for data description
+clean_vehicle_vars <- clean_vehicle %>%
+  select(city, state, electric_vehicle_type, model_year, electric_range, vehicle_location)
+
+# Creating a dataframe for the variables and their descriptions
+var_desc <- data.frame(
+  Variable = names(clean_vehicle_vars),
+  Descrption = c("Name of city",
+                 "Name of state",
+                 "The type of elctric vehicle (BEV / PHEV)",
+                 "Model year of the vehicle",
+                 "Range of the electric vehicle (miles)",
+                 "Geographic location of the vehicle (longitude and latitude values)")
+)
+
+# Using kableExtra to display the table in formal formatting
+var_desc %>%
+  kable() %>%
+  row_spec(0, background = "#ede9d8")
+
 
 ```
 
+<div class = blog-text-just>
+
+The data cleaning was fairly straight forward as the data that was uploaded at the source was pretty well-kept. To begin with, the observations with any missing values were removed, luckily a very insignificant number of observations were lost due to this, resulting in a far more accurate analysis. Next, the necessary variables were selected after filtering for the necessary requirements for the purpose of analysis, including location. The location variable was combined together in the form of latitude and longitude, therefore some string manipulation was necessary which separated the two in order to create the interactive map.
+
+Regarding the map in the analysis section, it sees grouped values for number of vehicles in a said location area, therefore the numbers end up being quite large. Since the observations are mapped according to the size which dictates the radius of the circle, there needed to be a better way to display the concentration of EVs in a location. Hence, the grouped data was aggregated by log10 scale. 
+
+</div>
 
 ### Analysis
 
@@ -140,6 +175,11 @@ grid_counts <- grid_counts %>%
   summarize(count = n()) %>%  # Count the number of vehicles in each grid cell
   st_as_sf()
 
+```
+
+```{r}
+
+# Locations of most populous cities to overlay on the map
 cities <- data.frame(
   city = c("Seattle", "Olympia", "Tacoma", "Spokane"),
   lat = c(47.6062, 47.0379, 47.2529, 47.4588),
@@ -148,13 +188,12 @@ cities <- data.frame(
 
 ```
 
-
 ```{r}
 #| label: fig-leaflet
 #| fig-cap: "Number of Registered EVs"
 
 # Plot the result using Leaflet
-map <- leaflet() %>%
+lf_map <- leaflet() %>%
   addTiles() %>%
   setView(lng = -120, lat = 47, zoom = 6) %>%
   addCircleMarkers(data = grid_counts,
@@ -169,17 +208,18 @@ map <- leaflet() %>%
                       lng = ~lon,
                       lat = ~lat,
                       label = ~city,
-                      labelOptions = labelOptions(noHide = TRUE, direction = "top", textOnly = TRUE, style = list(
-                        "color" = "blue",
-                        "font-size" = "12px",
-                        "font-weight" = "bold"
-                      ))) %>%
+                      labelOptions = labelOptions(noHide = TRUE, 
+                                                  direction = "top", 
+                                                  textOnly = TRUE, 
+                                                  style = list("color" = "blue",
+                                                               "font-size" = "12px",
+                                                               "font-weight" = "bold"))) %>%
   addLegend("topright",
             colors = "red",
             labels = "EV Count",
             title = "Aggregated EV Observations")
 
-map
+lf_map
 
 ```
 
@@ -207,7 +247,7 @@ summary_data <- clean_vehicle %>%
   group_by(electric_vehicle_type, model_year) %>%
   summarise(count = n())
 
-# Creating a timeseries barplot
+# Creating a timeseries line graph
 plot2 <- summary_data %>%
   ggplot(aes(x = factor(model_year), 
              y = count,
