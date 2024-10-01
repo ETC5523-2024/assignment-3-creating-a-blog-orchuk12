@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Rayyan Aamir"
+  favicon: "images/logo_1.png"
 
   navbar:
     logo: "images/logo_1.png"

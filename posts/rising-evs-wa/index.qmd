@@ -6,7 +6,6 @@ description: |
   Emission Vehicle (ZEV) legislature.
 author: "Rayyan Aamir"
 date: "2024-10-04"
-image: "../../images/ev.jpg"
 categories: [Electric Vehicles, Seattle]
 css: blog.css
 format:
