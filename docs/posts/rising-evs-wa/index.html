@@ -240,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="data-description" class="level3">
 <h3 class="anchored" data-anchor-id="data-description">Data Description</h3>
 <div class="blog-text-just">
-<p>The data to conduct the analysis for this blogpost article has been extracted from <a href="https://www.kaggle.com/datasets/jainaru/electric-vehicle-population/data">Kaggle</a> and this dataset was shared by a user named “Jaina”, it is titled, “Electric Vehicle Data”. It was shared in 2024 and tends to be updated quarterly.</p>
+<p>The data to conduct the analysis for this blogpost article has been extracted from <a href="https://www.kaggle.com/datasets/jainaru/electric-vehicle-population/data">Kaggle</a> and this dataset was shared by a user named “Jaina”, it is titled, “Electric Vehicle Data”. It was shared in 2024 and tends to be updated quarterly. This dataset shows the Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs) that are currently registered through Washington State Department of Licensing (DOL)</p>
 </div>
 <div class="cell">
 <div id="tbl-var_desc" class="cell quarto-float anchored">
@@ -295,7 +295,7 @@ Table&nbsp;1: Description of necessary variables from the dataset.
 </div>
 <div class="blog-text-just">
 <p>The data cleaning was fairly straight forward as the data that was uploaded at the source was pretty well-kept. To begin with, the observations with any missing values were removed, luckily a very insignificant number of observations were lost due to this, resulting in a far more accurate analysis. Next, the necessary variables were selected after filtering for the necessary requirements for the purpose of analysis, including location. The location variable was combined together in the form of latitude and longitude, therefore some string manipulation was necessary which separated the two in order to create the interactive map.</p>
-<p>Regarding the map in the analysis section, it sees grouped values for number of vehicles in a said location area, therefore the numbers end up being quite large. Since the observations are mapped according to the size which dictates the radius of the circle, there needed to be a better way to display the concentration of EVs in a location. Hence, the grouped data was aggregated by log10 scale.</p>
+<p>Regarding the map in the analysis section, it sees grouped values for number of vehicles in a said location area, therefore the numbers end up being quite large. Since the observations are mapped according to the size which dictates the radius of the circle, there needed to be a better way to display the concentration of EVs in a location. Hence, the grouped data was aggregated by a logarithmic 10 scale.</p>
 </div>
 </section>
 <section id="analysis" class="level3">
@@ -314,11 +314,11 @@ Figure&nbsp;1: Number of Registered EVs
 </div>
 </div>
 <div class="figure-desc">
-<p><a href="#fig-leaflet" class="quarto-xref">Figure&nbsp;1</a> above shows the aggregated number of EVs spread across Washington State. The map above is demonstrating the locations where the populations of these vehicles is at its highest. It shows patterns that a big chunk of these cars are registered around major towns and cities such as: Seattle, Portland, and Spokane.</p>
+<p><a href="#fig-leaflet" class="quarto-xref">Figure&nbsp;1</a> highlights the concentration of EVs across Washington State, showing that the highest populations of these vehicles are clustered around major cities like Seattle, Portland, and Spokane.</p>
 </div>
 <div class="blog-text-just">
-<p>In <a href="#fig-leaflet" class="quarto-xref">Figure&nbsp;1</a>, the distribution of EVs around Washington State is relatively scattered except for a few particular areas, such as: Seattle, Spokane, and Portland. Being a technological haven of innovation and advancement of many multinational corporations within the US, Seattle sees a lot of these MNCs based around this area offer incentives to their employees that own an electric vehicle such as rebates or free charging stations, namely Oracle and Amazon provide this. The individuals that own an EV are either of high income earning households and are able to afford some of the steep prices or are those that tend to be more environmentally conscious.</p>
-<p>Coming back to the question, why are there so many electric vehicles in Washington? In mid-2023, the state of Washington announced an EV instant rebate program where the local government aimed to provide 6500-8000 rebates between $2500-$9000 towards purchasing or leasing EVs (Washington State Department of Commerce, 2024). With this, the local government has successfully introduced one of the first low cost EV lease programs within the US and hopes to achieve a higher percentage of EVs present in the market.</p>
+<p>In <a href="#fig-leaflet" class="quarto-xref">Figure&nbsp;1</a>, it can be seen that the distribution of electric vehicles (EVs) across Washington State. The spread is somewhat scattered, but there are clear clusters in areas like Seattle, Spokane, and Portland. Seattle, as a hub of technology and innovation, is home to multinational corporations (MNCs) like Oracle and Amazon, both of which offer perks like rebates or free charging stations for employees who own an EV. It’s no surprise that a large portion of EV owners in this area are either part of higher-income households or are eco-conscious consumers looking to make a difference.</p>
+<p>But why are there so many EVs in Washington? Well, in mid-2023, Washington introduced an EV instant rebate program, offering between $2,500 to $9,000 toward the purchase or lease of an EV (Washington State Department of Commerce, 2024). The program aims to issue around 6,500 to 8,000 rebates, making it one of the first low-cost EV lease programs in the U.S. With initiatives like these, the state is rapidly increasing its share of EVs on the road.</p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -335,18 +335,19 @@ Figure&nbsp;2: Rising EV Sales Over Time
 </div>
 </div>
 <div class="figure-desc">
-<p><a href="#fig-lineplot" class="quarto-xref">Figure&nbsp;2</a> above shows the number of BEVs and PHEVs sold over time. The plot aims to illustrate the rising numbers and helps to identify patterns in the number of sales. The goal is to notice the significant rise in sales for 2023.</p>
+<p><a href="#fig-lineplot" class="quarto-xref">Figure&nbsp;2</a> shows the rising number of BEV and PHEV sales over time, with a particular spike in 2023, coinciding with new government rebate programs.</p>
 </div>
 <div class="blog-text-just">
-<p>Above in <a href="#fig-lineplot" class="quarto-xref">Figure&nbsp;2</a>, and we can see that the overall number of sales has been increasing over time, for both types of EVs. One odd thing that might be noticed is that there appears to be no BEVs or PHEVs prior to 2008, even though popular hybrid-vehicles such as the Toyota Prius have been popular since the early 2000s. This is because these new classifications were introduced when the BYD F3DM was launched in China, and marketed as the “first PHEV”, whilst equally in around 2010, the Nissan Leaf was the first globally marketed BEV which really kicked things off in this industry.</p>
-<p><a href="#fig-lineplot" class="quarto-xref">Figure&nbsp;2</a> also demonstrates that there is a significant rise in both types of EVs in 2023, which indicates the behaviour of consumers that “jumped the gun” and took advantage of these new rebates offered by the local government. We also notice that although PHEVs are lesser in numbers compared to true BEVs, they are still showing immense growth over the years and especially during 2024 where it appears that there are more PHEVs registered than BEVs.</p>
+<p>Looking at <a href="#fig-lineplot" class="quarto-xref">Figure&nbsp;2</a>, it can be noticed that a consistent rise in EV sales over time for both Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs). One thing that stands out is the absence of these vehicles before 2008, despite the popularity of hybrid cars like the Toyota Prius in the early 2000s. This is because BEVs and PHEVs as we know them today didn’t really hit the market until around 2010, when the Nissan Leaf became the first globally-marketed BEV and the BYD F3DM made its debut as the first PHEV.</p>
+<p>The spike in EV sales in 2023 is particularly noticeable, as many consumers “jumped the gun” to take advantage of the new government rebates. While BEVs continue to dominate, PHEVs are also seeing significant growth, with more PHEVs being registered in 2024 than BEVs, showing that consumer interest is expanding in both types of vehicles.</p>
 </div>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 <div class="blog-text-just">
-<p>Electric vehicles continue becoming popular, their abundance around the state of Washington continues to grow. With the implementation of the ZEV legislation and the rebates provided to the population, Washington State is well positioned and on its way to achieving the target of all new vehicles sold to be a ZEV by 2035.</p>
-<p>This brings forth also an entirely new perspective to the game, as manufacturers are also going to be pushed to ensure that their vehicles meet the criteria for a vehicle to be classified as a ZEV, which is that the vehicle must be able to travel at least 50 miles on battery power alone! Studies indicate that EVs can significantly reduce energy burdens and thus, in conclusion, this is all a push towards adapting to these new changes and working towards achieving lower carbon emissions in the state (Vega-Perkins et al., 2023). The US must aim to accelerate the EV adoption rates along with getting the population accustomed to driving electric vehicles for when they are the only vehicles around.</p>
+<p>Electric vehicles are rapidly gaining popularity in Washington State, driven by forward-thinking policies like the Zero Emission Vehicle (ZEV) legislation and government rebates. Washington has emerged as a leader in EV adoption, with one in every six new vehicles sold now being electric. This trend shows no signs of slowing, especially as the state continues to push for all new vehicle sales to meet ZEV standards by 2035.</p>
+<p>The analysis highlighted key factors behind this growth, such as incentives from large corporations and the recent introduction of rebate programs that have sparked a surge in EV sales, particularly in 2023. The data also revealed a significant increase in both Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs), with PHEVs gaining even more ground in 2024.</p>
+<p>Looking forward, the ZEV legislation will not only shape consumer behavior but also challenge manufacturers to innovate, ensuring their vehicles can meet the new standards of traveling at least 50 miles on battery power alone. According to Vega-Perkins et al.&nbsp;(2023), EVs have the potential to significantly reduce energy burdens, making this shift not just about adopting new technology, but also about working toward a more sustainable, lower-emission future. Ultimately, as the U.S. strives to accelerate EV adoption, Washington sets a strong example of how these changes can positively impact both the environment and the economy.</p>
 </div>
 </section>
 <section id="references" class="level3">
