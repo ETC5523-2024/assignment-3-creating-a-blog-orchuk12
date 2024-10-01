@@ -5,10 +5,8 @@ project:
 website:
   title: "Rayyan Aamir"
   favicon: "images/logo_1.png"
-
   navbar:
     logo: "images/logo_1.png"
-
     left:
       - href: index.qmd
         text: Home
@@ -16,13 +14,11 @@ website:
         text: Blog
       - href: about.qmd
         text: About
-
     right:
       - icon: github
         href: https://github.com/orchuk12
       - icon: linkedin
         href: https://www.linkedin.com/in/rayyan-shekhani/
-
   page-footer:
     left: |
       This website is an assignment based project for the unit<br>
@@ -34,7 +30,6 @@ website:
       Name: Rayyan Aamir<br>
       Student ID: 32065647<br>
       Email: raam0001@student.monash.edu
-
 format:
   html:
     theme: solar
