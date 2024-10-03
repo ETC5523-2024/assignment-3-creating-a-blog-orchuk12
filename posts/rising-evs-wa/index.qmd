@@ -157,7 +157,6 @@ Regarding the map in the analysis section, it sees grouped values for number of 
 ### Analysis
 
 ```{r}
-#| cache: true
 
 # Create a spatial data frame from the clean_vehicle data
 clean_vehicle_sf <- st_as_sf(clean_vehicle, coords = c("lon", "lat"), crs = 4326)
