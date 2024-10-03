@@ -74,4 +74,9 @@ a.about-link {
   margin-top: 5px;
 }
 
+.bi-gift-fill + .menu-text {
+  display: none;
+}
+
+
 
